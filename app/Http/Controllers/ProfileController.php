@@ -57,4 +57,18 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function rooster(Request $request): View
+    {
+        return view('profile.settings.rooster', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    public function help(Request $request): View
+    {
+        return view('profile.settings.help', [
+            'user' => $request->user(),
+        ]);
+    }
 }

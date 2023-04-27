@@ -87,7 +87,7 @@ section {
 .block-bottom {
     position: absolute;
     bottom: 0px;
-    left: 20%;
+    left: 35%;
     margin: 3em 0;
 }
 
@@ -97,8 +97,6 @@ section {
                     HEADER
 =====================================================
 */
-
-
 
 
 
@@ -165,9 +163,22 @@ h3 {
 */
 
 .box {
-    background-color: var(--lightGray);
-    border-radius: 5px;
-    box-shadow: 5px 5px var(--gray);
+    border: 3px solid var(--spanishBlue);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 5px 7px rgba(0, 0, 0, 0.315);
+}
+
+.box:hover {
+background-color: #F6F6F6;
+}
+
+.box::selection {
+    background-color: #838383;
+}
+
+.room-select {
+    display: none;
 }
 
 .input-label {
@@ -309,6 +320,12 @@ li {
     border-radius: 5px;
 }
 
+.room-selectiong-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 /*
 =====================================================
                     BUTTONS
@@ -403,6 +420,10 @@ li {
     padding: 0 1em;
 }
 
+.py-small {
+    padding: 0.5em 0;
+}
+
 .py-1 {
     padding: 1em 0;
 }
@@ -486,6 +507,11 @@ li {
 
 .width {
     width: 500px;
+}
+
+
+.width-50 {
+    width: 49%;
 }
 
 .width-60 {

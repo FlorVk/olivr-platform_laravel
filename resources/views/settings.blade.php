@@ -9,29 +9,32 @@
 
     <section>
         <img class="profile-image" src="{{  asset('placeholder.png')  }}" alt="">
-        
-        <form class="flex flex-column py-2" action="">
+        <form class="flex flex-column py-2" action="{{ route('settings.edit-profile') }}">
+        @csrf
+        @method('PUT')
             <div class="flex justify-between ">
                 <div class="width-100 flex flex-column">
                     <label class="input-label" for="firstname">Voornaam</label>
-                    <input class="width-80 input-field" name="firstname" type="text" placeholder="Voornaam">
+                    <input class="width-80 input-field" value="{{ $user->firstname }}" name="firstname" type="text" placeholder="Voornaam" required autofocus autocomplete="name">
                 </div>
 
                 <div  class="width-100 flex flex-column">
                     <label class="input-label" for="lastname">Achternaam</label>
-                    <input class="width-80 input-field" name="lastname" type="text" placeholder="Voornaam">
+                    <input class="width-80 input-field" value="{{ $user->lastname }}" name="lastname" type="text" placeholder="Voornaam">
                 </div>
             </div>
 
             <div class="width-100 flex flex-column">
                 <label class="input-label" for="email">E-mailadres</label>
-                <input class="width-40 input-field" name="email" type="email" placeholder="email">
+                <input class="width-40 input-field" value="{{ $user->email }}" name="email" type="email" placeholder="email">
             </div>
 
             <div class="width-100 flex flex-column">
                 <label class="input-label" for="password">Wachtwoord</label>
-                <input class="width-40 input-field" name="password" type="text" placeholder="wachtwoord">
+                <input class="width-40 input-field" value="****" name="password" type="text" placeholder="wachtwoord">
             </div>
+
+            <button type="submit">Update profile</button>
             
         </form>
         

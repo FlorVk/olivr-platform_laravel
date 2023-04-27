@@ -7,7 +7,7 @@
                 <input class="search-field" type="text" name="search" placeholder="Zoeken">
             </form>
         </div>
-        <a class="btn btn-blue" href="">Nieuwe time-out</a>
+        <a class="btn btn-blue" href="/timeout/create">Nieuwe time-out</a>
     </section>
 
     <section class="py-1">

@@ -2,10 +2,10 @@
 
         <section class="flex align-center justify-between">
             <div>
-                <h1 class="page-title">Hallo Kristel</h1>
+                <h1 class="page-title">Hallo {{ Auth::user()->firstname }}</h1>
                 <p>Laten we <span class="bold">wiskunde</span> aanleren aan <span class="bold">4 Economie</span></p>
             </div>
-            <a class="btn btn-blue" href="">Nieuwe time-out</a>
+            <a class="btn btn-blue" href="/timeout/create">Nieuwe time-out</a>
         </section>
 
         <section class="py-1">

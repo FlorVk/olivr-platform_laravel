@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/settings', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/settings', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/settings', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/settings/rooster', [ProfileController::class, 'rooster'])->name('rooster.edit');
+    Route::get('/settings/help', [ProfileController::class, 'help'])->name('rooster.edit');
+    
 });
 
-Route::get('/', function () {return view('dashboard');});
-Route::get('/timeout', function () {return view('/timeouts/timeout-home');});
-Route::get('/vr', function () {return view('/vr/vr');});
-Route::get('/settings', function () {return view('settings');});
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {return view('dashboard');});
+    Route::get('/timeout', function () {return view('/timeouts/timeout-home');});
+    
+    Route::get('/timeout/create', [SessionController::class, 'newSession'])->name('session.create');
+    Route::get('/vr', function () {return view('/vr/vr');});
+ 
+});
+
 
 
 require __DIR__.'/auth.php';
