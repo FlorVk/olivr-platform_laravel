@@ -10,6 +10,16 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = [
-        'child_id', 'room_id', 'audio', 'session_duration', 'session_date'
+        'student_id', 'room_id', 'audio', 'session_duration', 'session_date'
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 }

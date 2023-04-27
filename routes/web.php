@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
@@ -23,16 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/settings', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/settings/rooster', [ProfileController::class, 'rooster'])->name('rooster.edit');
     Route::get('/settings/help', [ProfileController::class, 'help'])->name('rooster.edit');
-    
-});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', function () {return view('dashboard');});
-    Route::get('/timeout', function () {return view('/timeouts/timeout-home');});
-    
+    Route::get('/timeout', [SessionController::class, 'timeout'])->name('timeout');
     Route::get('/timeout/create', [SessionController::class, 'newSession'])->name('session.create');
-    Route::get('/vr', function () {return view('/vr/vr');});
- 
+
+    Route::get('/', [Controller::class, 'index'])->name('home');
+    Route::get('/vr', [Controller::class, 'vr'])->name('vr');
+    
 });
 
 

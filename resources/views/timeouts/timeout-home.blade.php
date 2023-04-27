@@ -29,37 +29,15 @@
             </tr>
 
             <tbody class="table-body">
-                <tr class="table-row">
-                    <td>Jonas Janssens</td>
-                    <td>18/1/2023</td>
-                    <td>Ruimte</td>
-                    <td>13m6s</td>
-                    <td>Ja</td>
-                </tr>
-
-                <tr class="table-row">
-                    <td>Jonas Janssens</td>
-                    <td>18/1/2023</td>
-                    <td>Ruimte</td>
-                    <td>13m6s</td>
-                    <td>Ja</td>
-                </tr>
-
-                <tr class="table-row">
-                    <td>Jonas Janssens</td>
-                    <td>18/1/2023</td>
-                    <td>Ruimte</td>
-                    <td>13m6s</td>
-                    <td>Ja</td>
-                </tr>
-
-                <tr class="table-row">
-                    <td>Jonas Janssens</td>
-                    <td>18/1/2023</td>
-                    <td>Ruimte</td>
-                    <td>13m6s</td>
-                    <td>Ja</td>
-                </tr>
+                @foreach($sessions as $session)
+                    <tr class="table-row">
+                        <td>{{ $session->student->student_name }}</td>
+                        <td>{{ $session->session_date }}</td>
+                        <td>{{ $session->room->room_name }}</td>
+                        <td>{{ $session->session_duration }}</td>
+                        <td>{{ $session->audio }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         

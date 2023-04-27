@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('child_id');
+            $table->tinyInteger('student_id');
             $table->tinyInteger('room_id');
             $table->string('audio');
             $table->timestamp('session_date');
