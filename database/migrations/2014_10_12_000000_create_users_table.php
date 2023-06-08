@@ -21,6 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->tinyInteger('admin');
+            $table->string('user_image')->default('users/placeholder.png');
         });
     }
 

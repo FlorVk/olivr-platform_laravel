@@ -9,6 +9,7 @@
 
     <section>
         <img class="profile-image" src="{{  asset('placeholder.png')  }}" alt="">
+        
         <form class="flex flex-column py-2" action="{{ route('settings.edit-profile') }}">
         @csrf
         @method('PUT')

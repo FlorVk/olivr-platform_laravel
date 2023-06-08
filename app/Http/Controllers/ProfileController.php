@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -70,5 +71,22 @@ class ProfileController extends Controller
         return view('profile.settings.help', [
             'user' => $request->user(),
         ]);
+    }
+
+    public function updateUserImage (User $user){
+
+        $attributes = request()->validate([
+            'user_image' => 'mimes:jpg,png,jpeg|max:5048',
+        ]);
+
+
+        if (isset($attributes['user_image'])){
+            $attributes['user_image'] = request()->file('user_image')->store('users');
+        }
+        
+        $user->update($attributes);
+
+    
+        return back()->with('success', 'User updated');
     }
 }

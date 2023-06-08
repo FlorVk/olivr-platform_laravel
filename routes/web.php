@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/settings', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/settings/rooster', [ProfileController::class, 'rooster'])->name('rooster.find');
     Route::get('/settings/help', [ProfileController::class, 'help'])->name('rooster.edit');
+    Route::patch('/settings/image/{user}', [ProfileController::class, 'updateUserImage'])->name('profile.update.image');
 
 
     Route::get('/timeout', [SessionController::class, 'timeout'])->name('timeout');
