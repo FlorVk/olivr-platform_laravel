@@ -7,7 +7,7 @@
                 <input class="search-field" type="text" name="search" placeholder="Zoeken">
             </form>
         </div>
-        <a class="btn btn-blue" href="/timeout/create">Nieuwe time-out</a>
+        <a class="btn btn-yellow" href="/timeout/create">Nieuwe time-out</a>
     </section>
 
     <section class="py-1">
@@ -30,13 +30,24 @@
 
             <tbody class="table-body">
                 @foreach($sessions as $session)
+                
                     <tr class="table-row">
-                        <td>{{ $session->student->student_name }}</td>
+                        <td><a href="/timeout/{{ $session->id }}">{{ $session->student->student_name }}</td>
                         <td>{{ $session->session_date }}</td>
                         <td>{{ $session->room->room_name }}</td>
-                        <td>{{ $session->session_duration }}</td>
-                        <td>{{ $session->audio }}</td>
+                        
+                        @if($session->session_duration == 0)
+                            <td>10 minuten</p>
+                        @elseif($session->session_duration == 1)
+                            <td>15 minuten</p>
+                        @elseif($session->session_duration == 2)
+                            <td>20 minuten</p>
+                        @else
+                            <td>error</p>
+                        @endif
+                        <td><a href="/timeout/{{ $session->id }}">></td>
                     </tr>
+                
                 @endforeach
             </tbody>
         </table>

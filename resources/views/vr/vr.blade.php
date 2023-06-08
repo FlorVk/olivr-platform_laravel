@@ -7,12 +7,12 @@
 
         <div class="flex py-1">
             <div class="width-60">
-                <img class="vr-item-image" src="{{  asset('placeholder.png')  }}" alt="">
+                <img class="vr-item-image" src="{{  asset('storage/'. $room->room_image)  }}" alt="">
             </div>   
             <div class="flex flex-column justify-between width-40">
                 <h3>Room info</h3>
                 <p>{{ $room->room_description }}</p>
-                <a class="btn btn-blue margin-y" href="">Koop</a>
+                <a class="btn btn-yellow margin-y" href="">Koop</a>
             </div>
         </div>
     </section>

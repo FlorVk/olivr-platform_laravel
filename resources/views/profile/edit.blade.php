@@ -2,7 +2,7 @@
 <h1 class="page-title">Instellingen</h1>
 
 <section class="py-2">
-    <a class="btn margin-x btn-blue" href="/settings">Profiel</a>
+    <a class="btn margin-x btn-active" href="/settings">Profiel</a>
     <a class="btn margin-x" href="/settings/rooster">Rooster</a>
     <a class="btn margin-x" href="/settings/help">Help</a>
 </section>

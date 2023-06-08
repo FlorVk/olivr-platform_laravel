@@ -1,17 +1,73 @@
 <div>
     
-     <form>
+     <form class="flex flex-column height-100">
+
+        <div class="flex ">
+                <div class="flex align-center">
+                    @if ($currentStep == 1)
+                        <button type="button" class="steps-btn steps-btn-active" wire:click="clearForm">1</button>
+                    @else
+                        <button type="button" class="steps-btn" wire:click="step1">1</button>
+                    @endif
+                    <h2 class="px-1">Algemeen</h2>
+                </div>
+
+                <div class="flex px-1 align-center">
+                    @if ($currentStep == 2)
+                        <button type="button" class="steps-btn steps-btn-active" wire:click="step2">2</button>
+                    @else
+                        <button type="button" class="steps-btn" wire:click="step2">2</button>
+                    @endif
+                    <h2 class="px-1">Ruimte</h2>
+                </div>
+
+                <div class="flex px-1 align-center">
+                    @if ($currentStep == 3)
+                        <button type="button" class="steps-btn steps-btn-active px-1" wire:click="step3">3</button>
+                    @else
+                        <button type="button" class="steps-btn" wire:click="step3">3</button>
+                    @endif
+                    <h2 class="px-1">Tijd</h2>
+                </div>
+            </div>
 
          {{-- STEP 1 --}}
 
          @if ($currentStep == 1)
              
       
-         <div class="step-one">
-                <div class="width-100 flex flex-column">
-                    <label class="input-label" for="name">Naam:</label>
-                    <input class="width-40 input-field" value="" name="name" type="name" placeholder="">
+         <div class="height-100">
+                <div class="steps-div">
+                    <h2 class="py-small">Naam leerling:</h2>
+                    
+
+                    <div class="">
+                        <label class="py-small">Naam leerling:</label>
+                                <select class="" name="Student">
+                                @foreach($students as $student)
+                                    <option wire:model="student_id" value="{{ $student->id }}">{{ $student->student_name }}</option>
+                                @endforeach
+                                </select>
+                            </div>
                 </div>
+
+                <div class="steps-div">
+                    <h2 class="py-small">Mag de resterende tijdsduur zichtbaar zijn in de time-out?</h2>
+                    <p>Overleg dit met degene die in de time-out gaat.</p>
+
+                    <div class="steps-div width-20">
+                        <div class="py-1 checkbox">
+                            <input type="checkbox" id="visibility-1" name="visibility-1" wire:model="time_visibility" value="1">
+                            <label class="px-1" for="visibility-1">Ja</label>
+                        </div>
+
+                        <div class="py-1 checkbox">
+                            <input type="checkbox" id="visibility-2" name="visibility-2" wire:model="time_visibility" value="0">
+                            <label class="px-1" for="visibility-2">Nee</label>
+                        </div>
+                    </div>
+                </div>
+                
          </div>
          @endif
 
@@ -20,20 +76,25 @@
          @if ($currentStep == 2)
              
         
-         <div class="step-two">
+         <div class="steps-div step-box">
+                <h2 class="py-small">Kies een ruimte voor de time-out</h2>
+                
                 <div class="flex justify-between">
-                    @foreach ($rooms as $room)
-                    <div class="width-50 box padding flex">
-                    <input type="radio" class="room-select" name="ruimte" id="{{ $room->id}}" value="{{ $room->id}}">
-                        <label for="{{ $room->id}}">
-                            <img class="room-selectiong-image" src="{{  asset('placeholder.png')  }}" alt="{{ $room->room_name }}">
-                            <h2>{{ $room->room_name }}</h2>
-                            <p>{{ $room->room_description }}</p>
-                        </label>
+                @foreach($rooms as $room)
+                <div class="vr-item-image" style="background-image: url('{{ asset('storage/'. $room->room_image) }}')">
+                <input  type="checkbox" wire:model="room_id.{{ $room->id }}" value="{{ $room->id }}">
+                </div>
+                    
+                    
+                
+                    @isset($room->match)
+                        // Access other $room->match properties here
                         
-                    </div>
+                    @endisset
+                    
+                @endforeach
 
-                    @endforeach
+
                 </div>
          </div>
 
@@ -43,125 +104,48 @@
          @if ($currentStep == 3)
              
      
-         <div class="step-three">
-                <h2>Mag er audio aanwezig zijn in de ruimte?</h2>
-
-                <div class="py-1">
-                    <input type="checkbox" name="option1" value="0">
-                    <label for="option1">Ja (standaard audio van de gekozen ruimte)</label>
-                </div>
-
-                <div class="py-1">
-                    <input type="checkbox" name="option2" value="1">
-                    <label for="option2">Nee</label>
-                </div>
-
-                <div class="py-1">
-                    <input type="checkbox" name="option3" value="2">
-                    <label for="option3">Aangepast</label>
-                </div>
-         </div>
-         @endif
-
-         {{-- STEP 4 --}}
-         @if ($currentStep == 4)
-             
-     
-         <div class="step-four">
-                <div>
-                    <h2>Meest gebruikt:</h2>
-
-                    <div class="py-1">
-                        <input type="checkbox" name="option1" value="0">
-                        <label for="option1">Volstond deze sessie in de VR-ruimte?</label>
-                    </div>
-                    
-                    <div class="py-1">
-                        <input type="checkbox" name="option2" value="1">
-                        <label for="option2">Waarom wou je naar deze VR-ruimte?</label>
-                    </div>
-
-                    <div class="py-1">
-                        <input type="checkbox" name="option3" value="2">
-                        <label for="option3">Ben je klaar om je volgende les te volgen?</label>
-                    </div>
-                    
-                </div>
-
-                <div>
-                    <h2>Alle vragen:</h2>
-
-                    <div class="py-1">
-                        <input type="checkbox" name="option1" value="0">
-                        <label for="option1">Volstond deze sessie in de VR-ruimte?</label>
-                    </div>
-                    
-                    <div class="py-1">
-                        <input type="checkbox" name="option2" value="1">
-                        <label for="option2">Waarom wou je naar deze VR-ruimte?</label>
-                    </div>
-
-                    <div class="py-1">
-                        <input type="checkbox" name="option3" value="2">
-                        <label for="option3">Ben je klaar om je volgende les te volgen?</label>
-                    </div>
-                    
-                </div>
-         </div>
-
-         @endif
-
-         {{-- STEP 5 --}}
-         @if ($currentStep == 5)
-             
-     
-         <div class="step-five">
-                <h2>Hoe lang mag de sessie duren?</h2>
+         <div class="steps-div">
+                <h2 class="py-small">Hoelang mag de time-out duren?</h2>
                 <p class="py-small">Overleg dit met degene die in de time-out gaat.</p>
 
-                <div class="py-1">
-                    <input type="checkbox" name="option1" value="0">
-                    <label for="option1">10 minuten</label>
-                </div>
-                
-                <div class="py-1">
-                    <input type="checkbox" name="option2" value="1">
-                    <label for="option2">15 minuten</label>
-                </div>
+                <div class="width-20">
+                    <div class="py-1 checkbox">
+                        <input type="checkbox" name="duration-1" wire:model="session_duration" value="0">
+                        <label class="px-1" for="duration-1">10 minuten</label>
+                    </div>
+                    
+                    <div class="py-1 checkbox">
+                        <input type="checkbox" name="duration-2" wire:model="session_duration" value="1">
+                        <label class="px-1" for="duration-2">15 minuten</label>
+                    </div>
 
-                <div class="py-1">
-                    <input type="checkbox" name="option3" value="2">
-                    <label for="option3">20 minuten</label>
-                </div>
-
-                <div class="py-1">
-                    <input type="checkbox" name="option4" value="3">
-                    <label for="option4"> minuten</label>
+                    <div class="py-1 checkbox">
+                        <input type="checkbox" name="duration-3" wire:model="session_duration" value="2">
+                        <label class="px-1" for="duration-3">20 minuten</label>
+                    </div>
                 </div>
          </div>
-
          @endif
 
-         <div class="flex justify-content">
+
+         <div class="steps-next">
 
             @if ($currentStep == 1)
                 <div></div>
             @endif
-
-            @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5)
-                <button type="button" class="btn btn-blue" wire:click="decreaseStep()">Back</button>
+            
+            @if ($currentStep == 1 || $currentStep == 2)
+                <a type="button" class="btn btn-yellow" wire:click="increaseStep()">Volgende</a>
             @endif
             
-            @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3 || $currentStep == 4)
-                <button type="button" class="btn btn-blue" wire:click="increaseStep()">Next</button>
-            @endif
-            
-            @if ($currentStep == 5)
-                 <button type="submit" class="btn btn-blue">Submit</button>
+            @if ($currentStep == 3)
+                 <a type="submit" class="btn btn-yellow">Submit</a>
             @endif
                 
                
          </div>
+
+         
 
      </form>
 

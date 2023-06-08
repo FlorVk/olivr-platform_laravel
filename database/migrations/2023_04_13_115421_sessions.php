@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('student_id');
             $table->tinyInteger('room_id');
-            $table->string('audio');
+            $table->tinyInteger('time_visibility');
             $table->timestamp('session_date');
-            $table->bigInteger('session_duration');
+            $table->tinyInteger('session_duration');
             $table->timestamps();
+            $table->string('session_description');
         });
     }
 

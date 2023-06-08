@@ -8,8 +8,9 @@
         <title>{{ config('app.name', 'OliVR') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         <link rel="stylesheet" href="/reset.css">
@@ -33,5 +34,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
     </body>
 </html>

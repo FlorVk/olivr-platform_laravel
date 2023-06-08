@@ -1,6 +1,6 @@
 <img 
-    src="{{  asset('logo.svg')  }}"
+    src="{{  asset('logo.png')  }}"
     alt="Application logo"
-    width="100px"
+    width="150px"
     class="logo"
 />
