@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('student_name');
             $table->string('student_class');
-            $table->string('student_image');
+            $table->string('student_image')->default('students/placeholder.png');
         });
     }
 

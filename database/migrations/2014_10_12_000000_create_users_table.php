@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->tinyInteger('admin');
+            $table->tinyInteger('admin')->default(0);
             $table->string('user_image')->default('users/placeholder.png');
         });
     }

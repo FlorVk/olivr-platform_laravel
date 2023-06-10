@@ -44,7 +44,7 @@ class AdminController extends BaseController
 
         Room::create($attributes);
 
-        return redirect('/');
+        return redirect('/admin/rooms');
     }
 
     public function editRoom(Room $room){
@@ -107,7 +107,7 @@ class AdminController extends BaseController
 
         Student::create($attributes);
 
-        return redirect('/');
+        return redirect('/admin/students');
     }
 
     public function editStudent(Student $student){

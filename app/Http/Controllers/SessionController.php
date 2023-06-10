@@ -80,9 +80,9 @@ class SessionController extends Controller
         $attributes['session_date'] = now();
         $attributes['user_id'] = auth()->id();
 
-        Session::create($attributes);
+        $session = Session::create($attributes);
 
-        return redirect('/');
+        return redirect('/timeout/' . $session->id);
     }
     
 }

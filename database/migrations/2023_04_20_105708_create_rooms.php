@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('room_name');
             $table->string('room_description');
-            $table->string('room_image');
+            $table->string('room_image')->default('rooms/placeholder.png');
         });
     }
 
