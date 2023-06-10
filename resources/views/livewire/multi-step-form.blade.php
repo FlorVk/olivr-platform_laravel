@@ -42,13 +42,13 @@
                     
 
                     <div class="">
-                        <label class="py-small">Naam leerling:</label>
-                                <select class="" name="Student">
-                                @foreach($students as $student)
-                                    <option wire:model="student_id" value="{{ $student->id }}">{{ $student->student_name }}</option>
-                                @endforeach
-                                </select>
-                            </div>
+                    
+                        <select wire:model="student_id" class="input-field" name="student_id">
+                            @foreach($students as $student)
+                                <option wire:model="student_id" value="{{ $student->id }}" name="student_id">{{ $student->student_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="steps-div">
@@ -57,12 +57,12 @@
 
                     <div class="steps-div width-20">
                         <div class="py-1 checkbox">
-                            <input type="checkbox" id="visibility-1" name="visibility-1" wire:model="time_visibility" value="1">
+                            <input type="radio" id="visibility-1" name="time_visibility" wire:model="time_visibility" value="1">
                             <label class="px-1" for="visibility-1">Ja</label>
                         </div>
 
                         <div class="py-1 checkbox">
-                            <input type="checkbox" id="visibility-2" name="visibility-2" wire:model="time_visibility" value="0">
+                            <input type="radio" id="visibility-2" name="time_visibility" wire:model="time_visibility" value="0">
                             <label class="px-1" for="visibility-2">Nee</label>
                         </div>
                     </div>
@@ -77,26 +77,18 @@
              
         
          <div class="steps-div step-box">
-                <h2 class="py-small">Kies een ruimte voor de time-out</h2>
-                
-                <div class="flex justify-between">
+            <h2 class="py-small">Kies een ruimte voor de time-out</h2>
+
+            <div class="flex justify-between">
                 @foreach($rooms as $room)
-                <div class="vr-item-image" style="background-image: url('{{ asset('storage/'. $room->room_image) }}')">
-                <input  type="checkbox" wire:model="room_id.{{ $room->id }}" value="{{ $room->id }}">
-                </div>
-                    
-                    
-                
-                    @isset($room->match)
-                        // Access other $room->match properties here
-                        
-                    @endisset
-                    
+                    <label for="room-{{ $room->id }}" class="room-label">
+                        <input type="radio" wire:model="room_id" id="room-{{ $room->id }}" value="{{ $room->id }}" name="room_id">
+                        <img class="vr-item-image" src="{{ asset('storage/'. $room->room_image) }}" alt="Room Image">
+                    </label>
                 @endforeach
+            </div>
+        </div>
 
-
-                </div>
-         </div>
 
          @endif
          {{-- STEP 3 --}}
@@ -110,17 +102,17 @@
 
                 <div class="width-20">
                     <div class="py-1 checkbox">
-                        <input type="checkbox" name="duration-1" wire:model="session_duration" value="0">
+                        <input type="radio" name="session_duration" wire:model="session_duration" value="0">
                         <label class="px-1" for="duration-1">10 minuten</label>
                     </div>
                     
                     <div class="py-1 checkbox">
-                        <input type="checkbox" name="duration-2" wire:model="session_duration" value="1">
+                        <input type="radio" name="session_duration" wire:model="session_duration" value="1">
                         <label class="px-1" for="duration-2">15 minuten</label>
                     </div>
 
                     <div class="py-1 checkbox">
-                        <input type="checkbox" name="duration-3" wire:model="session_duration" value="2">
+                        <input type="radio" name="session_duration" wire:model="session_duration" value="2">
                         <label class="px-1" for="duration-3">20 minuten</label>
                     </div>
                 </div>

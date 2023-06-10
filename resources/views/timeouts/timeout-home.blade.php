@@ -32,7 +32,12 @@
                 @foreach($sessions as $session)
                 
                     <tr class="table-row">
-                        <td><a href="/timeout/{{ $session->id }}">{{ $session->student->student_name }}</td>
+                        <td><a href="/timeout/{{ $session->id }}">
+                        <div class="flex align-center">
+                            <img class="student-image-small" src="{{  asset('storage/'. $session->student->student_image)  }}" alt="">
+                            <div class="px-1">{{ $session->student->student_name }}</div>
+                        </div>
+                        </td>
                         <td>{{ $session->session_date }}</td>
                         <td>{{ $session->room->room_name }}</td>
                         

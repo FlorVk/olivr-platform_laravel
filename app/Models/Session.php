@@ -11,7 +11,7 @@ class Session extends Model
     use HasFactory;
 
     protected $fillable = [
-        'student_id', 'room_id', 'audio', 'session_duration', 'session_date'
+        'student_id', 'room_id', 'audio', 'session_duration', 'session_date', 'session_description', 'time_visibility'
     ];
 
     public function student()

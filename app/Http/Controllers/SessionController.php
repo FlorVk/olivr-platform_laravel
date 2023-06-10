@@ -13,7 +13,9 @@ class SessionController extends Controller
 
     public function newSession(){
         return view('/timeouts/create/new-session', [
-            'sessions' => Session::all()
+            'sessions' => Session::all(),
+            'students' => Student::all(),
+            'rooms' => Room::all()
         ]);
     }
     public function timeout(){
@@ -38,6 +40,49 @@ class SessionController extends Controller
             'session' => $session
         ], 
         compact('chart'));
+    }
+
+    public function update(Session $session){
+        $attributes = request()->validate([
+            'session_description' => 'required',
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+        $session->update($attributes);
+
+    
+        return back()->with('success', 'Session updated');
+    }
+
+    public function updateDescription(Request $request, $id)
+    {
+
+        $session = Session::findOrFail($id);
+
+
+        $session->session_description = $request->input('session_description');
+
+        $session->save();
+
+        return back()->with('success', 'Session updated');
+    }
+
+
+    public function sessionStore(){
+       
+        $attributes = request()->validate([
+            'student_id' => 'required',
+            'room_id' => 'required',
+            'time_visibility' => 'required',
+            'session_duration'=>'required'
+        ]);
+
+        $attributes['session_date'] = now();
+        $attributes['user_id'] = auth()->id();
+
+        Session::create($attributes);
+
+        return redirect('/');
     }
     
 }

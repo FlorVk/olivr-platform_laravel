@@ -12,9 +12,9 @@ class MultiStepForm extends Component
 {
 
     public $student_id;
-    public $room_id = [];
-    public $time_visibility = [];
-    public $session_duration = [];
+    public $room_id;
+    public $time_visibility;
+    public $session_duration;
     public $session_date;
 
     public $totalSteps = 3;
@@ -28,7 +28,11 @@ class MultiStepForm extends Component
 
     public function render()
     {
-        return view('livewire.multi-step-form', ['rooms' => Room::all(), 'students' => Student::all()]);
+        $rooms = Room::all();
+        $students = Student::all();
+
+        return view('livewire.multi-step-form', compact('rooms', 'students'));
+        
     }
 
     public function increaseStep(){
@@ -63,13 +67,13 @@ class MultiStepForm extends Component
         if($this->currentStep == 1){
             $this->validate([
                 'student_id'=>'required',
-                'time_visibility' => 'required|array|min:1|max:1'
+                'time_visibility' => 'required'
             ]);
         }
         elseif($this->currentStep == 2){
             
               $this->validate([
-                'room_id' => 'required|array|min:1|max:1'
+                'room_id' => 'required'
               ]);
         }
     }
@@ -88,7 +92,7 @@ class MultiStepForm extends Component
     public function submitForm(){
           if($this->currentStep == 3){
               $this->validate([
-                'session_duration'=>'required|array|min:1|max:1'
+                'session_duration'=>'required'
               ]);
           }
 
