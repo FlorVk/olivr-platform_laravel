@@ -60,6 +60,8 @@ class AdminController extends BaseController
             
         ]);
 
+        $attributes['room_description'] = nl2br($attributes['room_description']);
+
 
         if (isset($attributes['room_image'])){
             $attributes['room_image'] = request()->file('room_image')->store('rooms');

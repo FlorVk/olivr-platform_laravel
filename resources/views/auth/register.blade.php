@@ -4,57 +4,52 @@
         @csrf
 
         <!-- Name -->
-        <div class="width-40 flex flex-column">
-           <div>
-                <x-text-input id="firstname" class="input-field" placeholder="Voornaam" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="given-name" />
+        <div class="flex justify-between width-100">
+           <div class="width-100 flex flex-column">
+                <x-text-input id="firstname" class="input-field width-90 mobile-register-name" placeholder="Voornaam" type="text" name="firstname" :value="old('firstname')" required autofocus autocomplete="given-name" />
                 <x-input-error :messages="$errors->get('firstname')" class="mt-2" />
            </div>
         
-            <div>
-                <x-text-input id="lastname" class="input-field" placeholder="Achternaam" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="family-name" />
+            <div class="width-100 flex flex-column">
+                <x-text-input id="lastname" class="input-field width-100" placeholder="Achternaam" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="family-name" />
                 <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
             </div>
         </div>
 
-        <div>
-            
-        </div>
+
 
         <!-- Email Address -->
-        <div class="mt-4">
-            <x-text-input id="email" class="input-field" placeholder="E-mailadres" type="email" name="email" :value="old('email')" required autocomplete="username" />
+        <div class="my-1">
+            <x-text-input id="email" class="input-field width-100" placeholder="E-mailadres" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="my-1">
 
-            <x-text-input id="password" class="input-field"
+            <x-text-input id="password" class="input-field width-100"
                             type="password"
                             name="password"
+                            placeholder="Wachtwoord school"
                             required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="my-1">
 
-            <x-text-input id="password_confirmation" class="input-field"
+            <x-text-input id="password_confirmation" class="input-field width-100 "
                             type="password"
+                            placeholder="Herhaal wachtwoord"
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
 
-            <x-primary-button class="btn-yellow">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <button class="btn btn-blue width-100 margin-y">{{ __('Registreer') }} </button>
+
     </form>
+    <a href="/login">Heb je al een account? <span class="bold">Login</span></a>
 </x-guest-layout>

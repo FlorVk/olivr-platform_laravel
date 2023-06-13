@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('session_date');
             $table->tinyInteger('session_duration');
             $table->timestamps();
-            $table->string('session_description')->default('');
+            $table->longText('session_description')->default('');
         });
     }
 

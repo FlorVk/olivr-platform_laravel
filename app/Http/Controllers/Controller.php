@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Session;
+use App\Models\UserRooms;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller as BaseController;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -33,11 +35,21 @@ class Controller extends BaseController
         ];
 
         $chart = new LaravelChart($options);
+
+
+        $selectedDay = now()->format('Y-m-d');
+        $sessions = Session::whereDate('session_date', $selectedDay)
+        ->orderBy('session_date', 'desc')
+        ->paginate(5);
+
+        $sessions->getCollection()->transform(function ($session) {
+            $session->session_date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->session_date)->format('Y-m-d');
+            return $session;
+        });
+
         
-        return view('dashboard', [
-            'sessions' => Session::paginate(5)
-        ], 
-        compact('chart'));
+
+        return view('dashboard', compact('sessions', 'chart'));
     }
 
     public function vr(){
@@ -50,6 +62,22 @@ class Controller extends BaseController
         return view('admin.rooms.create', [
             
         ]);
+    }
+
+    public function vrBuy()
+    {
+        $attributes = request()->validate([
+            'room_id' => 'required'
+        ]);
+        
+        $userId = Auth::id();
+
+        $attributes['user_id'] = $userId;
+        $attributes['user_id'] = auth()->id();
+
+        UserRooms::create($attributes);
+
+        return redirect('/vr');
     }
 
     

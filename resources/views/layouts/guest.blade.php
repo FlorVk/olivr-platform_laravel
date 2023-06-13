@@ -29,11 +29,11 @@
             @endif
 
             <!-- Page Content -->
-            <main class="main-block main auth-main flex align-center flex-column ">
+            <main class="main-block main auth-main flex flex-column ">
                 {{ $slot }}
             </main>
 
-            <div class="auth-block"></div>
+            <div class="auth-block mobile-auth-hide"></div>
         </div>
     </body>
 </html>

@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/timeout', [SessionController::class, 'timeout'])->name('timeout');
+    Route::get('timeout/{date:name}', [ItemController::class, 'timeoutFilter']);
     Route::get('/timeout/create', [SessionController::class, 'newSession'])->name('session.create');
     Route::get('/timeout/{session}', [SessionController::class, 'timeoutDetailed'])->name('timeout.session');
     Route::patch('/session/{id}/edit', [SessionController::class, 'updateDescription'])->name('session.update');
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     
    
     Route::get('/vr', [Controller::class, 'vr'])->name('vr');
+    Route::post('/vr/submit', [Controller::class, 'vrBuy']);
     Route::get('/rooms/{room}', [Controller::class, 'vrRooms'])->name('vr.room');
 
 

@@ -18,7 +18,7 @@
                 <!-- Description -->
                 <div class="flex flex-column">
                     <x-input-label class="input-label" for="room_description" :value="__('Beschrijving')" />
-                    <textarea class="input-field input-description" name="room_description" id="room_description" required >{{  $room->room_description  }}</textarea>
+                    <textarea class="input-field input-description" name="room_description" id="room_description" required >{!! e(old('room_description', $room->room_description)) !!}</textarea>
                     <x-input-error :messages="$errors->get('room_description')" class="mt-2" />
                 </div>
 

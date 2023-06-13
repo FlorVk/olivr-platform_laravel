@@ -28,32 +28,33 @@
                     @else
                         <p class="bold">error</p>
                     @endif
-                    <h3 class="py-2">Minuten in de ruimte</h3>
+                    <h2 class="py-2 title-medium">Minuten in de ruimte</h2>
             </div>
             
         </div>
 
-        <div class="grid grid3 box">
-
+        <div class="grid grid3 box px-3">
+            <h2 class="py-1 title-medium">Reden van time-out</h2>
+            <div>
+                <p class="btn margin-small">Te druk</p>
+                <p class="btn margin-small">Ruzie</p>
+            </div>
         </div>
 
-        <div class="grid grid4 box">
+        <div class="grid grid4 box px-3">
             <div class="">
-            <form method="POST" action="{{ route('session.update', ['id' => $session->id]) }}" enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
-                <div class="flex justify-between align-center">
-                    <h2>Opmerkingen</h2>
-                    <input type="submit" class="btn btn-yellow margin-y" value="Aanpassen">
-                </div>
-                <div >
-                    <textarea class="input-none width-100" name="session_description" id="session_description" required >{{  $session->session_description  }}</textarea>
-                    <x-input-error :messages="$errors->get('session_description')" class="mt-2" />
-                </div>
-                
-                
-
-            </form>
+                <form method="POST" action="{{ route('session.update', ['id' => $session->id]) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+                    <div class="flex justify-between align-center">
+                        <h2 class="title-medium">Opmerkingen</h2>
+                        <input type="submit" class="btn btn-yellow margin-y" value="Aanpassen">
+                    </div>
+                    <div>
+                        <textarea class="input-none width-100" name="session_description" id="session_description" required>{{  $session->session_description }}</textarea>
+                        <x-input-error :messages="$errors->get('session_description')" class="mt-2" />
+                    </div>
+                </form>
             </div>
 
         </div>

@@ -1,29 +1,28 @@
 <x-app-layout>
 
 
-<section class="sticky">
-    <div class="flex align-center justify-between ">
-            <h1 class="page-title page-title-small">Nieuwe time-out</h1>
-            <a class="btn btn-warning" href="/timeout">Stop</a>
-    </div>
-
-    <div class="flex ">
-        <div class="flex align-center">
-            <a href="#step1" class="steps-btn steps-btn-active">1</a>
-            <h2 class="px-1">Algemeen</h2>
+    <section class="sticky mobile-steps-sticky">
+        <div class="flex align-center justify-between">
+                <h1 class="page-title page-title-small">Nieuwe time-out</h1>
         </div>
 
-        <div class="flex px-1 align-center"> 
-            <a href="#step2" class="steps-btn">2</a>
-            <h2 class="px-1">Ruimte</h2>
-        </div>
+        <div class="flex steps">
+            <div class="flex align-center">
+                <a href="#step1" class="steps-btn steps-btn-active">1</a>
+                <h2 class="px-1">Algemeen</h2>
+            </div>
 
-        <div class="flex px-1 align-center">
-            <a href="#step3" class="steps-btn">3</a>
-            <h2 class="px-1">Tijd</h2>
+            <div class="flex px-1 align-center"> 
+                <a href="#step2" class="steps-btn">2</a>
+                <h2 class="px-1">Ruimte</h2>
+            </div>
+
+            <div class="flex px-1 align-center">
+                <a href="#step3" class="steps-btn">3</a>
+                <h2 class="px-1">Tijd</h2>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
     
 
     <form class="margin-top-large" method="POST" action="/timeout/new">
@@ -47,7 +46,7 @@
                     <h2 class="py-small">Mag de resterende tijdsduur zichtbaar zijn in de time-out?</h2>
                     <p>Overleg dit met degene die in de time-out gaat.</p>
 
-                    <div class="steps-div width-20">
+                    <div class="steps-div width-20 steps-width">
                         <div class="py-1 checkbox">
                             <input class="radio" type="radio" id="visibility-1" name="time_visibility" value="1">
                             <label class="px-1" for="visibility-1">Ja</label>
@@ -71,7 +70,7 @@
         <div class="steps-div step-box">
             <h2 class="py-small">Kies een ruimte voor de time-out</h2>
 
-            <div class="flex justify-between">
+            <div class="flex justify-between rooms-mobile">
                 @foreach($rooms as $room)
                     <label for="room-{{ $room->id }}" class="room-label">
                         <input type="radio" id="room-{{ $room->id }}" value="{{ $room->id }}" name="room_id" class="room-radio" style="display: none;">
@@ -89,7 +88,7 @@
                 <h2 class="py-small">Hoelang mag de time-out duren?</h2>
                 <p class="py-small">Overleg dit met degene die in de time-out gaat.</p>
 
-                <div class="width-20">
+                <div class="width-20 steps-width">
                     <div class="py-1 checkbox">
                         <input type="radio" id="duration-1" name="session_duration" value="0">
                         <label class="px-1" for="duration-1">10 minuten</label>
@@ -110,7 +109,12 @@
             </div>
         </section>
 
-        <input type="submit" class="btn btn-yellow btn-big" value="Plaats">
+        <div class="flex justify-center mobile-timeoutform-btns">
+            <a class="btn btn-warning margin-x mobile-margin-none" href="/timeout">Formulier afbreken</a>
+            <input type="submit" class="btn btn-yellow btn-medium margin-x mobile-margin-none mobile-btn-wide" value="Start">
+            
+        </div>
+        
 
         
     </form>

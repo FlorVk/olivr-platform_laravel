@@ -27,7 +27,7 @@
                 </div>
 
 
-                <input type="submit" class="btn btn-main margin-y btn-big" value="Plaats">
+                <input type="submit" class="btn btn-yellow margin-y btn-big" value="Plaats">
             </form>
         </section>
     </main>
