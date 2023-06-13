@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/timeout', [SessionController::class, 'timeout'])->name('timeout');
-    Route::get('timeout/{date:name}', [ItemController::class, 'timeoutFilter']);
     Route::get('/timeout/create', [SessionController::class, 'newSession'])->name('session.create');
     Route::get('/timeout/{session}', [SessionController::class, 'timeoutDetailed'])->name('timeout.session');
     Route::patch('/session/{id}/edit', [SessionController::class, 'updateDescription'])->name('session.update');
