@@ -79,7 +79,7 @@ class SessionController extends Controller
 
         $session->save();
 
-        return back()->with('success', 'Session updated');
+        return back()->with('success', 'Wijzingen zijn opgeslagen');
     }
 
 

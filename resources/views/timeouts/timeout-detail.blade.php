@@ -18,6 +18,10 @@
                 </ul>
             </div>
         </div>
+
+        <script>
+            window.open('http://www.webgl.olivr-experience.be', '_blank');
+        </script>
     @endif
 
 
