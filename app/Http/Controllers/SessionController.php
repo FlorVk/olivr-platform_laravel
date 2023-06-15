@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Session;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Notifications\SessionCreated;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class SessionController extends Controller
@@ -45,6 +46,7 @@ class SessionController extends Controller
         }
 
         $sessions = $query->orderBy('session_date', 'desc')->paginate(7);
+
 
         $sessions->getCollection()->transform(function ($session) {
             $session->session_date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->session_date)->format('Y-m-d');
@@ -95,7 +97,7 @@ class SessionController extends Controller
 
         $session = Session::create($attributes);
 
-        return redirect('/timeout/' . $session->id);
+        return redirect('/timeout/' . $session->id)->with('success', 'De time-out is succesvol gestart');
     }
     
 }

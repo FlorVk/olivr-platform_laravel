@@ -10,6 +10,16 @@
         </div>
     </section>
 
+    @if (\Session::has('success'))
+        <div id="alert" class="alert-box">
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
 
     <section class="section-grid">
 
@@ -61,4 +71,9 @@
 
     </section>
 
+    <script>
+        setTimeout(function() {
+            $('#alert').fadeOut('slow');
+        }, 5000);
+    </script>
 </x-app-layout>
